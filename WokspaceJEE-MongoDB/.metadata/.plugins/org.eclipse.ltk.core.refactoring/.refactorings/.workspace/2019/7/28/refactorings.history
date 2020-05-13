@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;Leoni-Prjt/src/metier/ServiceMetier.java&apos;" deleteContents="false" description="Delete resource &apos;Leoni-Prjt/src/metier/ServiceMetier.java&apos;" element1="/Leoni-Prjt/src/metier/ServiceMetier.java" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1563022883771"/>&#x0A;<refactoring comment="Delete resource &apos;Leoni-Prjt/WebContent/loginCss&apos;" deleteContents="false" description="Delete resource &apos;Leoni-Prjt/WebContent/loginCss&apos;" element1="/Leoni-Prjt/WebContent/loginCss" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1563095809289"/>
+</session>

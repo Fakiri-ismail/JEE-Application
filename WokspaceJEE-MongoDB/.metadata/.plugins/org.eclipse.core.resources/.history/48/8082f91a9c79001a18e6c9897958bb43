@@ -1,0 +1,160 @@
+package Web;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+
+import Dao.ServiceDAO;
+import Metier.*;
+
+
+@WebServlet("/ServletService")
+public class ServletService extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	ServiceMetier serviceMetier=new ServiceMetier();
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("user", null);
+		getServletContext().getRequestDispatcher("/login.jsp").forward(request,  response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session= request.getSession();
+	    String page= (String) session.getAttribute("page");
+	    
+	    user user;    
+	    ArrayList<String> urls;
+	    	
+	    if (page.equals("login")) {
+	    	
+	    	String email=request.getParameter("email");
+	    	String passWord=request.getParameter("motPasse");
+	    		    	
+	    	user=ServiceMetier.getUser(email, passWord);
+	    	
+	    	if (user!=null) {
+	    		session.setAttribute("user",user );
+	    		
+	    		urls= ServiceMetier.getAllUrl();
+	    		request.getServletContext().setAttribute("urls",urls );
+	    		
+	    		getServletContext().getRequestDispatcher("/AjoutReaction.jsp").forward(request,  response);
+	    	}
+	    	else {
+	    		request.setAttribute("erreur", "Email/Password est incorrect");
+	    		doGet(request,response);
+	    	}
+	    	
+	    }
+	    else
+	    	if (page.equals("inscription")) {
+	    	  	user= new user();
+		    	user.setEmail(request.getParameter("email"));
+		    	user.setNomPrenom(request.getParameter("nomPrenom"));
+		    	user.setMotPasse(request.getParameter("motPasse"));
+		    	
+		    	if(!user.userDejaExiste(user)) {
+		    		try {
+						ServiceDAO.AddUser(user);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+		    		doGet(request,response);
+		    	}
+		    	else {
+		    		request.setAttribute("erreur", "email Deja existe");
+		    		getServletContext().getRequestDispatcher("/inscription.jsp").forward(request,response);
+		    	}
+		    	
+	        }
+	    else 
+	    	if (page.equals("AjoutNews")) {
+	    		
+	    		String action=request.getParameter("action");
+		    	user=(user)session.getAttribute("user");
+		    	    	
+		    	if (action.equals("Valider")) {
+		    	  	news news= new news();
+			    	news.setCreateur(user);
+			    	news.setUrl(request.getParameter("url"));
+			    	news.setTitre(request.getParameter("titre"));
+			    	
+			    	if(!news.newsDejaExist(news)) {
+			    	try {
+						ServiceDAO.AddNews(news);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+			    	}else {
+			    		request.setAttribute("erreur", "News deja existante");
+			    	}
+			    	getServletContext().getRequestDispatcher("/AjoutNews.jsp").forward(request,  response);
+			    	/*try {
+						//ServiceMetier.addNews(news);
+					
+					} catch (NewsExistant e) {
+			    		request.setAttribute("erreur", "News deja existante");
+					}*/
+			    	
+		    	}
+		    	else 
+		    		if (action.equals("Ajout reaction")) {
+		    			urls= ServiceMetier.getAllUrl();
+			    		request.getServletContext().setAttribute("urls",urls );
+			    		getServletContext().getRequestDispatcher("/AjoutReaction.jsp").forward(request,  response);
+		    		}
+		    		if (action.equals("Affichage news")) {
+		    			ArrayList<News> listNews= ServiceMetier.getListNews();
+			    		request.getServletContext().setAttribute("listNews",listNews );
+			    		getServletContext().getRequestDispatcher("/AfficheNews.jsp").forward(request,  response);
+		    		}
+		   
+	    
+
+	    	}
+	    
+	    else
+	   	    if (page.equals("AjoutReaction")) {
+	   	    
+	   	    	String action=request.getParameter("action");
+		    	user=(user)session.getAttribute("user");
+	    		
+		    	    	
+		    	if (action.equals("Valider")) {
+		    		reaction  reaction= new reaction();
+		    		reaction.setUser(user);
+		    		reaction.setNews(ServiceMetier.getNewsByUrl(request.getParameter("listUrl")));
+		    		if ( ((String) request.getParameter ("reaction")).equals("Jaime") ) 
+		    			reaction.setReaction(true);
+		    		else 
+		    			reaction.setReaction(false);
+		    		try {
+						ServiceDAO.AddReaction(reaction);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
+		    		getServletContext().getRequestDispatcher("/AjoutReaction.jsp").forward(request,  response);
+		    	    	
+		    	}
+		    	else 
+		    		if (action.equals("Ajout news")) {
+		    			getServletContext().getRequestDispatcher("/AjoutNews.jsp").forward(request,  response);
+		    		}
+		    		if (action.equals("Affichage news")) {
+		    			ArrayList<News> listNews= ServiceMetier.getListNews();
+			    		request.getServletContext().setAttribute("listNews",listNews );
+			    		
+			    		getServletContext().getRequestDispatcher("/AfficheNews.jsp").forward(request,  response);
+		    		}
+		
+		    }
+	}
+
+}

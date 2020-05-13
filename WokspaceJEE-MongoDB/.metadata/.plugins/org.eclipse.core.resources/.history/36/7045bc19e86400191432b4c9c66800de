@@ -1,0 +1,19 @@
+package Dao;
+
+import java.sql.Connection;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Connection connection=Connexion.getConnection();
+		
+		if(connection!=null)
+			System.out.println("Connexion OK");
+		else
+			System.out.println("Connexion not OK");
+			
+		
+		
+	}
+
+}

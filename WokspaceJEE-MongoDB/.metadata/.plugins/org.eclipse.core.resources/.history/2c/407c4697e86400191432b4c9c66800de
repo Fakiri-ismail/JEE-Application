@@ -1,0 +1,25 @@
+package Dao;
+
+import java.sql.*;
+
+public class Connexion {
+	
+	private static Connection connection;
+	
+	static {
+		
+		try {
+			Class.forName("com.oracle.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:oracle://localhost:3306/xe","system","jamayka");
+			System.out.println("Connection établie ");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch (SQLException e) { e.printStackTrace(); }
+		
+	}
+	
+	public static Connection getConnection() {
+		return connection;
+	}
+
+}

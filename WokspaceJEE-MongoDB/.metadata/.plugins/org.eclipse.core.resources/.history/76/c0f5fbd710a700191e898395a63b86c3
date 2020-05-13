@@ -1,0 +1,77 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix ="s" uri="/struts-tags" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Formulaire d'autentification</title>
+<style type="text/css">
+	div {
+		width: 50%;
+		background-color: powderblue;
+		}
+</style>
+</head>
+
+<body>
+
+<center>
+	<s:form method ="post" action="Ajout_materiel">
+		
+		NOM&PRENOM: <s:property value="#session.User.getNomPrenom()"/>
+		<br><br><br>
+		
+		<label for="1">idMateriel:</label>
+		<input id='1' type='text' name='idMateriel' placeholder='idMateriel'><br>
+		
+		<label for="2">genre:</label>
+		<input id='2' type='text' name='genre' placeholder='genre'><br>
+		
+		<label for="3">reference:</label>
+		<input id='3' type='text' name='reference' placeholder='reference'><br>
+		
+		<label for="4">quantite:</label>
+		<input id='4' type='text' name='quantite' placeholder='quantite'><br>
+		
+		<label for="8">date Commande:</label>
+		<input id='8' type='text' name='dateCommande' placeholder='Ex: 31/12/1998'><br><br>
+		
+		<input type="radio"  name="statut"   value="true" checked > Bien 
+		<input type="radio"  name="statut"   value="false" >  Mauvais     
+		<br><br>
+		
+		<label for="5">emplacement:</label>
+		<input id='5' type='text' name='emplacement' placeholder='emplacement'><br>
+		
+		<label for="6">description:</label>
+		<textarea id='6' name="description" rows="5" cols="33" placeholder='description'></textarea><br>
+		
+		<label for="7">date Mouvement:</label>
+		<input id='7' type='text' name='dateMouvement' placeholder='Ex: 31/12/1998'><br><br>
+				
+		<input type='submit' value = "Valider"><br>	
+		
+	</s:form>
+	
+	<div>
+   		<p>
+		<%
+		String erreur1 = (String) request.getAttribute("champv");
+		String erreur2 = (String) request.getAttribute("q0");
+		String erreur3 = (String) request.getAttribute("err");
+		String ok = (String) request.getAttribute("matadded");
+		if (erreur1!=null)  out.print(erreur1);
+		if (erreur2!=null)  out.print(erreur2);
+		if (erreur3!=null)  out.print(erreur3);
+		if (ok!=null)  out.print(ok);
+		%>
+		</p>
+	</div>
+
+	<a href="<s:url action='Affichage_materiel' />">Afficher les Materiels</a>
+   
+</center>
+
+</body>
+</html>

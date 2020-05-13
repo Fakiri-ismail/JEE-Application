@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Leoni-Prjt/src/dao/MatirielModel.java&apos; to &apos;MaterielModel.java&apos;" description="Rename resource &apos;MatirielModel.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/dao/MatirielModel.java" name="MaterielModel.java" stamp="1562924561362" updateReferences="true"/>
+</session>

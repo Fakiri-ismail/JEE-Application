@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Formulaire</title>
+</head>
+
+<body>
+	<form id="myForm" action = "/Prj2/FormServlet" method ="post">
+<fieldset>
+    <legend>Informations</legend>
+  
+	<div style="text-align:center;">  
+
+	<p><label>Nom:</label>
+	<input pattern="[A-za-z]+" name="nom"  id="c1" title="Le nom doit contenir que des caractéres alphabetiques."  required/> 
+        
+ 	<p><label>Prénom:</label>
+	<input pattern="[A-za-z]+" name="prenom" id="c2" title="Le prénom doit contenir que des caractéres alphabetiques."required /> 
+        
+	<p><label>Code postal:</label>
+	<input pattern="[0-9]{5}" name="code" id="c3" title="Le code postal doit contenir 5 chiffres." placeholder="Ex : 12345" required /> 
+     
+	<p><label>E-mail address:</label>
+	<input  type="email"  name="email"  id="c4" placeholder="Ex : nom@mail.fr" required >
+ 
+	<p> <INPUT type ="submit" value="Ajouter" name="opp"> 
+	<p> <INPUT type ="submit" value="Afficher" name="opp">
+	
+	<!-- <button type="button" onclick="clear2();"> Remettre les données originales</button>  -->
+   
+	</div>
+</fieldset>
+	</form>
+
+<script>
+function clear2() {
+
+    document.getElementById("c1").value = "";
+    document.getElementById("c2").value = "";
+    document.getElementById("c3").value = "";
+    document.getElementById("c4").value = "";
+}
+</script>
+
+</body>
+</html>

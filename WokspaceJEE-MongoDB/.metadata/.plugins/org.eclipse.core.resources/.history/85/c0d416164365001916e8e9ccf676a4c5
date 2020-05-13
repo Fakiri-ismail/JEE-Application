@@ -1,0 +1,115 @@
+package Metier;
+
+import java.util.ArrayList;
+
+
+public class ServiceMetier {
+	private static ArrayList<News> listNews = new ArrayList<News>() ; 
+	private static ArrayList<Reaction> listReactions= new ArrayList<Reaction>(); 
+    
+	public ServiceMetier ()  {}
+	
+	public static ArrayList<News> getListNews() {
+		return listNews;
+	}
+	public static void setListNews(ArrayList<News> listNews) {
+		ServiceMetier.listNews = listNews;
+	}
+	public static ArrayList<Reaction> getListReactions() {
+		return listReactions;
+	}
+	public static void setListReactions(ArrayList<Reaction> listReactions) {
+		ServiceMetier.listReactions = listReactions;
+	}
+
+	// Methodes metiers
+	public static User getUserByEmail(String email) {
+			for(User user:User.getUsers()) {
+				if (user.getEmail().equals(email)) return user;
+			}
+			return null;
+	}
+	public static User getUser(String email, String motPasse) {
+			for(User user:User.getUsers()) {
+				if (user.getEmail().equals(email) && 
+					user.getMotPasse().equals(motPasse)	) return user;
+			}
+			return null;
+	}
+	public static News getNewsByUrl(String url) {
+		for(News news:listNews) {
+			if (news.getUrl().equals(url)	) return news;
+		}
+		return null;
+	}
+	public static ArrayList<String> getAllUrl() {
+		ArrayList<String> urls= new ArrayList<String>();
+		for(News news:listNews) {
+			urls.add(news.getUrl());
+		}
+		return urls;
+	}
+	
+	public static boolean addNews(News news) throws NewsExistant {
+		if ( getNewsByUrl(news.getUrl())!= null)
+			throw new NewsExistant("News exixt déja");
+		listNews.add(news);
+		return true;
+	}
+	public static boolean addReaction(Reaction reaction) {
+		for(Reaction react:listReactions) {
+		  if (react.equals(reaction)) {
+			react.setReaction(reaction.getReaction());
+			return true;
+		  }
+		}
+		listReactions.add(reaction);
+		return true;
+	}
+	public static ArrayList<News> getNewsCreateByUser(User user){
+		ArrayList<News> lesNews= new ArrayList<News>();
+		for(News news:listNews) {
+			  if (news.getCreateur().equals(user)) 
+				  lesNews.add(news);
+			 
+		}
+		return lesNews;
+	}
+	public static ArrayList<Reaction> getReactionByUser(User user){
+		ArrayList<Reaction> lesReaction= new ArrayList<Reaction>();
+		for(Reaction reaction:listReactions) {
+			  if (reaction.getUser().equals(user)) 
+				  lesReaction.add(reaction);
+			 
+		}
+		return lesReaction;
+	}
+	public static ArrayList<Reaction> getReactionByNews(News news){
+		ArrayList<Reaction> lesReaction= new ArrayList<Reaction>();
+		for(Reaction reaction:listReactions) {
+			  if (reaction.getNews().equals(news)) 
+				  lesReaction.add(reaction);
+			 
+		}
+		return lesReaction;
+	}
+	public static int getNombreJaime(News news){
+		int nombreJaime=0;
+		for(Reaction reaction:listReactions) {
+			  if (reaction.getNews().equals(news)
+					&& reaction.getReaction()   ) 
+				  nombreJaime++;	 
+		}
+		return nombreJaime;
+	}
+	public static int getNombreJeDeteste(News news){
+		int nombreJeDeteste=0;
+		for(Reaction reaction:listReactions) {
+			  if (reaction.getNews().equals(news)
+					&& !reaction.getReaction()   ) 
+				  nombreJeDeteste++;	 
+		}
+		return nombreJeDeteste;
+	}
+	
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Prjt-NewsJDBC&apos; to &apos;Prjt-NewsMongoDB&apos;" description="Rename resource &apos;Prjt-NewsJDBC&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/Prjt-NewsJDBC" name="Prjt-NewsMongoDB" stamp="1586472698294" updateReferences="true"/>
+</session>

@@ -1,0 +1,69 @@
+package Metier;
+
+import java.io.*;
+import Dao.ServiceDAO;
+
+public class news implements Serializable {
+	
+	private static final long serialVersionUID = -5316888178005877528L;
+	
+	private String url;
+	private String titre;
+	private String dateInsertion;
+	
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public String getDateInsertion() {
+		return dateInsertion;
+	}
+
+	public void setDateInsertion(String dateNews) {
+		this.dateInsertion = dateNews;
+	}
+
+
+	public static boolean newsDejaExist(new_user n) {
+		for (new_user news : ServiceDAO.getAllNews()) {
+			if(news.getNews().getUrl().equalsIgnoreCase(n.getNews().getUrl())) return true;
+		}
+		return false;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "news [url=" + url + ", titre=" + titre + ", dateInsertion=" + dateInsertion + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		news other = (news) obj;
+		if (url == null) {
+			if (other.url != null)
+				return false;
+		} else if (!url.equals(other.url))
+			return false;
+		return true;
+	}
+}

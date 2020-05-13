@@ -1,0 +1,166 @@
+package Dao;
+
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
+
+import java.util.ArrayList;
+
+import org.bson.Document;
+
+import com.google.gson.Gson;
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
+
+import Metier.new_user;
+import Metier.news;
+import Metier.reaction;
+import Metier.user;
+import Metier.user_reaction;
+
+public class ServiceDAO {
+
+	static MongoDatabase connection = Connexion.getConnection();
+	
+	//_______________User______________________
+	public static ArrayList<user> getAllUser() {
+		ArrayList<user> users=new ArrayList<user>();
+		try {
+			FindIterable<Document> mydatabaserecords = connection.getCollection("user").find();
+			MongoCursor<Document> iterator = mydatabaserecords.iterator();
+			while (iterator.hasNext()) {
+				Document doc = iterator.next();
+				user u = new user();
+				u.setEmail(doc.getString("email"));
+				u.setNomPrenom(doc.getString("NomPrenom"));
+				u.setMotPasse(doc.getString("MotPasse"));
+				users.add(u);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return users ;
+	}
+	
+	public static boolean AddUser(user u) {
+		MongoCollection<Document> mydatabaserecords = connection.getCollection("user");
+		BasicDBObject whereQuery = new BasicDBObject();
+		whereQuery.put("email", u.getEmail());
+		if(mydatabaserecords.find(whereQuery).first()==null) {
+			Gson gson = new Gson();
+			String obj =gson.toJson(u);
+			mydatabaserecords.insertOne(Document.parse(obj));
+			return true;
+		}
+		return false;
+	}
+
+	
+//	//_________________News_____________________
+public static ArrayList<new_user> getAllNews() {
+	ArrayList<new_user> n=new ArrayList<new_user>();
+	try {
+		FindIterable<Document> mydatabaserecords = connection.getCollection("news").find();
+		MongoCursor<Document> iterator = mydatabaserecords.iterator();
+	    while (iterator.hasNext()) {
+	    	news news = new news();
+	    	user u = new user();
+	    	new_user nu = new new_user();
+	    	Document doc = iterator.next();
+		    Document user =(Document) doc.get("user");
+		    Document newsi = (Document) doc.get("new");
+		    u.setMotPasse(user.getString("MotPasse"));
+		    System.out.println(u.getMotPasse());
+		    u.setNomPrenom(user.getString("NomPrenom"));
+		    System.out.println(u.getNomPrenom());
+		    u.setEmail(user.getString("email"));
+		    System.out.println(u.getEmail());
+		    nu.setUser(u);
+		    news.setTitre(newsi.getString("titre"));
+		    news.setUrl(newsi.getString("url"));
+		    news.setDateInsertion(newsi.getString("dateInsertion"));
+		    nu.setNews(news);
+	        n.add(nu);
+	    	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return n; 
+	}
+	
+	public static void AddNews(new_user n){
+		MongoCollection<Document> mydatabaserecords = connection.getCollection("news");
+		Gson gson = new Gson();
+		String obj =gson.toJson(n);
+		mydatabaserecords.insertOne(Document.parse(obj));
+	}
+	
+	//______________Reaction___________________
+	public static ArrayList<user_reaction> getAllReactions() {
+		ArrayList<user_reaction> r=new  ArrayList<user_reaction>();
+			FindIterable<Document> mydatabaserecords = connection.getCollection("reactions").find();
+			MongoCursor<Document> iterator = mydatabaserecords.iterator();
+			while (iterator.hasNext()) {
+				reaction reac=new reaction();
+			    news news = new news();
+			    user u = new user();
+				user_reaction ur = new user_reaction();
+				Document doc = iterator.next();
+				Document user =(Document) doc.get("user");
+				u.setMotPasse(user.getString("MotPasse"));
+				u.setNomPrenom(user.getString("NomPrenom"));
+				u.setEmail(user.getString("email"));
+				Document react = (Document) doc.get("reaction");
+				reac.setNum(react.getInteger("num"));
+				reac.setDateReaction(react.getString("dateReaction"));
+				reac.setReaction(react.getBoolean("reaction"));
+				Document newsi = (Document) doc.get("news");
+				news.setTitre(newsi.getString("titre"));
+				news.setUrl(newsi.getString("url"));
+				news.setDateInsertion(newsi.getString("dateInsertion"));
+				ur.setNews(news);
+				ur.setReaction(reac);
+				ur.setUser(u);
+				r.add(ur);
+				}
+		return r;
+	}
+//
+	public static void AddReaction(user_reaction r) {
+		MongoCollection<Document> mydatabaserecords = connection.getCollection("reactions");
+		Gson gson = new Gson();
+		String obj =gson.toJson(r);
+		mydatabaserecords.insertOne(Document.parse(obj));
+	}
+//	
+	public static int NbAimeNews(news n) {
+		int nb = 0;
+			FindIterable<Document> findIterable =connection.getCollection("reactions").find(and(
+					eq("news.url",n.getUrl()),
+					eq("reaction.reaction",true)
+					));
+			MongoCursor<Document> iterator = findIterable.iterator();
+			while(iterator.hasNext()) {
+				iterator.next();
+				nb++;
+			}
+			System.out.println(nb);
+		return nb;
+	}
+	public static int NbDetesteNews(news n) {
+		int nb = 0;
+			FindIterable<Document> findIterable =connection.getCollection("reactions").find(and(
+					eq("news.url",n.getUrl()),
+					eq("reaction.reaction",false)
+					));
+			MongoCursor<Document> iterator = findIterable.iterator();
+			while(iterator.hasNext()) {
+				iterator.next();
+				nb++;
+			}
+			System.out.println(nb);
+		return nb;
+	}
+}

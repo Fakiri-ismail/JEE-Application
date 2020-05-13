@@ -1,0 +1,18 @@
+package Metier;
+
+import java.util.ArrayList;
+
+import Dao.ServiceDAO;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		ArrayList<String> urls= new ArrayList<String>();
+		for(String url:ServiceMetier.getAllUrl()) {
+			System.out.println(url);
+		}
+
+	}
+
+}

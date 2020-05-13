@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix ="s" uri="/struts-tags" %>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
+<%@page import="metier.User"%>
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Home Page</title>
+<link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+
+<body>
+<header class="wrapper">
+
+ 	<a style="justify-self: start;" href="<s:url action='index' />">Home Page<img src="img/home.png" alt="home"/></a>
+ 	<a style="justify-self: center;" href="#"><img src="img/leoni.png" alt="Leoni"/></a>
+ 	<a style="justify-self: end;" href="<s:url action='deconnexion' />">Deconexion<img src="img/user_logout.png" alt="logout"/></a>
+		
+</header>
+	  
+<div class="tete">
+   	<s:form method ="post" action="cherche_materiel">
+		<input type='text' name='idMateriel' placeholder='IdMateriel' required>
+		<button type='submit'><b>Chercher</b></button>
+		<h5 style="color: red"><%String erreur1 = (String) request.getAttribute("err1");
+								if (erreur1!=null)  out.print(erreur1);%></h5>
+	</s:form>
+  	<h3> USER : <s:property value="#session.User.getNomPrenom()"/> </h3>
+</div>
+
+<!-- __________________________________________________________________________________________________ -->
+
+<div class="wrapper">
+  	<h1>Operations</h1>
+  	<div class="corp">
+  	
+  	<img style="justify-self: center;" src="img/User.png" alt="ajoutUser"/>
+  	<img style="justify-self: center;" src="img/plus.png" alt="ajoutMateriel"/>
+  	<img style="justify-self: center;" src="img/mouves.png" alt="ajoutMouv"/>
+  	<img style="justify-self: center;" src="img/affich.png" alt="AffichMat"/>
+  	
+   	</div>
+   	
+  	<div class="corp">
+  	
+  	<% Map currentSession = ActionContext.getContext().getSession();
+		User user = (User)currentSession.get("User");
+		if(user.getStatut()){%>
+	<a style="justify-self: center;" href="<s:url action='inscrire' />">Ajouter un nouveau User</a>
+	<%} %>
+	<a style="justify-self: center;" href="<s:url action='AjouterMateriel' />">Ajouter Materiel</a>
+	<a style="justify-self: center;" href="<s:url action='ajouMouvMat' />">Ajouter Mouvement Materiel</a>
+   	<a style="justify-self: center;" href="<s:url action='Affichage_materiel' />">Afficher les Materiels</a>
+   	
+   	</div>
+</div>
+	
+
+</body>
+</html>

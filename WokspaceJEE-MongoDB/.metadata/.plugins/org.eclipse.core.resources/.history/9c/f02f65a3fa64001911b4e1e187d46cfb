@@ -1,0 +1,42 @@
+package Dao;
+import java.sql.*;
+import java.util.ArrayList;
+
+import Metier.News;
+import Metier.User;
+
+public class ServiceDao {
+	private static Connection connection=Connexion.getConnection();
+	
+	public static ArrayList<User> getAllUser() throws SQLException{
+		ArrayList<User> users=new ArrayList<User>();
+		
+		Statement st=connection.createStatement();
+		ResultSet rs=st.executeQuery("selest * from user");
+		while(rs.next()) {
+			User user=new User();
+			user.setEmail(rs.getString("email"));
+			user.setNomPrenom(rs.getString(2));
+			user.setMotPasse(rs.getString(3));
+			users.add(user);
+		}
+		return users;
+	}
+	
+	public static ArrayList<News> getListNews() throws SQLException{
+		ArrayList<News> news=new ArrayList<News>();
+		User use = new User();
+		Statement st=connection.createStatement();
+		ResultSet rs=st.executeQuery("selest * from pub");
+		while(rs.next()) {
+			News pub=new News();
+			pub.setUrl(rs.getString(1));
+			pub.setTitre(rs.getString(2));
+			pub.setDateInsertion(rs.getDate(3));
+			use.setEmail(rs.getString(4));
+			pub.setCreateur(use);
+			news.add(pub);
+		}
+		return news;
+	}
+}

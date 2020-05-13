@@ -1,0 +1,116 @@
+package Dao;
+import java.sql.*;
+import java.util.ArrayList;
+
+import Metier.News;
+import Metier.Reaction;
+import Metier.User;
+
+public class ServiceDao {
+	private static Connection connection=Connexion.getConnection();
+	
+	public static ArrayList<User> getAllUser() throws SQLException{
+		ArrayList<User> users=new ArrayList<User>();
+		
+		Statement st=connection.createStatement();
+		ResultSet rs=st.executeQuery("select * from user");
+		while(rs.next()) {
+			User user=new User();
+			user.setEmail(rs.getString(1));
+			user.setNomPrenom(rs.getString(2));
+			user.setMotPasse(rs.getString(3));
+			users.add(user);
+		}
+		return users;
+	}
+	
+	public static User getUser(String email)throws SQLException{
+		User user = new User();
+		
+		Statement st=connection.createStatement();
+		ResultSet rs=st.executeQuery("selest * from User where email like "+email+"");
+			user.setEmail(rs.getString(1));
+			user.setNomPrenom(rs.getString(2));
+			user.setMotPasse(rs.getString(3));
+		
+		return user;
+	}
+	
+	public static User getUser(String email, String MotPasse)throws SQLException{
+		User user = new User();
+		
+		Statement st=connection.createStatement();
+		ResultSet rs=st.executeQuery("selest * from User where email like "+email+"and motpasse like"+MotPasse+"");
+			user.setEmail(rs.getString(1));
+			user.setNomPrenom(rs.getString(2));
+			user.setMotPasse(rs.getString(3));
+		
+		return user;
+	}
+	
+	public static void addUser(String email,String nomPrenom,String motPasse) throws SQLException{
+		Statement st=connection.createStatement();
+		st.executeUpdate("INSERT INTO user VALUES ("+email+","+nomPrenom+","+motPasse+"");
+	}
+	
+	public static ArrayList<News> getListNews() throws SQLException{
+		ArrayList<News> news=new ArrayList<News>();
+		
+		Statement st=connection.createStatement();
+		ResultSet rs=st.executeQuery("selest * from news");
+		while(rs.next()) {
+			News neew=new News();
+			User use = new User();
+			
+			neew.setUrl(rs.getString(1));
+			neew.setTitre(rs.getString(2));
+			neew.setDateInsertion(rs.getDate(3));
+			use=ServiceDao.getUser(rs.getString(4));
+			neew.setCreateur(use);
+			news.add(neew);
+		}
+		return news;
+	}
+	
+	public static News getNewsByUrl(String url) throws SQLException{
+		Statement st=connection.createStatement();
+		ResultSet rs=st.executeQuery("selest * from news where url like"+url+"");
+		News n=new News();
+			n.setUrl(rs.getString(1));
+			n.setTitre(rs.getString(2));
+			n.setDateInsertion(rs.getDate(3));
+			n.setCreateur(ServiceDao.getUser(rs.getString(4)));
+		return n;
+	}
+	
+	public static void addNews(String url,String titre,Date dateInsertion,String email) throws SQLException{
+		Statement st=connection.createStatement();
+		st.executeUpdate("INSERT INTO news VALUES ("+url+","+titre+","+dateInsertion+","+email+"");
+	}
+	
+	public static ArrayList<Reaction> getListReactions() throws SQLException {
+		ArrayList<Reaction> Reactions=new ArrayList<Reaction>();
+
+		Statement st=connection.createStatement();
+		ResultSet rs=st.executeQuery("selest * from reaction");
+		while(rs.next()) {
+			Reaction reac=new Reaction();
+			
+			reac.setNum(rs.getInt(1));
+			reac.setDateReaction(rs.getDate(2));
+			reac.setReaction(rs.getBoolean(3));
+			reac.setUser(ServiceDao.getUser(rs.getString(4)));
+			reac.setNews(ServiceDao.getNewsByUrl(rs.getString(5)));
+			Reactions.add(reac);
+		}
+		
+		return Reactions;
+	}
+	
+	
+	
+	
+	
+	
+	
+}

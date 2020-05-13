@@ -1,0 +1,179 @@
+package Web;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+
+import Dao.ServiceDAO;
+import Metier.*;
+
+
+@WebServlet("/ServletService")
+public class ServletService extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	ServiceMetier serviceMetier=new ServiceMetier();
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("user", null);
+		getServletContext().getRequestDispatcher("/login.jsp").forward(request,  response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session= request.getSession();
+	    String page= (String) session.getAttribute("page");
+	    
+	    user user;    
+	    ArrayList<String> urls;
+	    	
+	    if (page.equals("login")) {
+	    	
+	    	String email=request.getParameter("email");
+	    	System.out.println(email);
+	    	String passWord=request.getParameter("motPasse");
+	    	System.out.println(passWord);
+	    	
+	    	user=ServiceMetier.getUser(email, passWord);
+	    	System.out.println("lllllllllll");
+	    	
+	    	if (user!=null) {
+	    		session.setAttribute("user",user );
+	    		System.out.println("llyyyyyyyyyyyyyyyyylllllllll");	
+	    		
+	    		urls= ServiceMetier.getAllUrl();
+	    		System.out.println("llyyyyyyyyyyyyyyyyylllllllll2");
+	    		request.getServletContext().setAttribute("urls",urls );
+	    		System.out.println("llyyyyyyyyyyyyyyyyylllllllll3");
+	    		getServletContext().getRequestDispatcher("/AjoutReaction.jsp").forward(request,  response);
+	    		System.out.println("llyyyyyyyyyyyyyyyyyllllll122121lll");
+	    	}
+	    	else {
+	    		System.out.println("fffffffffffffffffffffffffffff");
+	    		request.setAttribute("erreur", "Email/Password est incorrect");
+	    		System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmm");
+	    		doGet(request,response);
+	    		System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkk");
+	    	}
+	    	
+	    }
+	    else
+	    	if (page.equals("inscription")) {
+	    		System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyy1");
+	    	  	user= new user();
+	    	  	System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyy2");
+		    	user.setEmail(request.getParameter("email"));
+		    	user.setNomPrenom(request.getParameter("nomPrenom"));
+		    	user.setMotPasse(request.getParameter("motPasse"));
+		    	
+		    	if(!user.userDejaExiste(user)) {
+		    		try {
+						ServiceDAO.AddUser(user);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+		    		doGet(request,response);
+		    	}
+		    	else {
+		    		request.setAttribute("erreur", "email Deja existe");
+		    		getServletContext().getRequestDispatcher("/inscription.jsp").forward(request,response);
+		    	}
+		    	
+	        }
+	    else 
+	    	if (page.equals("AjoutNews")) {
+	    		
+	    		String action=request.getParameter("action");
+		    	user=(user)session.getAttribute("user");
+		    	
+		    	if (action.equals("Valider")) {
+		    	  	news news= new news();
+		    	  	new_user newsUser = new new_user();
+//			    	news.setCreateur(user);
+			    	news.setUrl(request.getParameter("url"));
+			    	news.setTitre(request.getParameter("titre"));
+			    	
+			    	newsUser.setUser(user);
+			    	newsUser.setNews(news);
+			    	
+			    	if(!newsUser.getNews().newsDejaExist(newsUser)) {
+			    	try {
+						ServiceDAO.AddNews(newsUser);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+			    	}else {
+			    		request.setAttribute("erreur", "News deja existante");
+			    	}
+			    	getServletContext().getRequestDispatcher("/AjoutNews.jsp").forward(request,  response);
+			    	/*try {
+						//ServiceMetier.addNews(news);
+					
+					} catch (NewsExistant e) {
+			    		request.setAttribute("erreur", "News deja existante");
+					}*/
+			    	
+		    	}
+		    	else 
+		    		if (action.equals("Ajout reaction")) {
+		    			urls= ServiceMetier.getAllUrl();
+			    		request.getServletContext().setAttribute("urls",urls );
+			    		getServletContext().getRequestDispatcher("/AjoutReaction.jsp").forward(request,  response);
+		    		}
+		    		if (action.equals("Affichage news")) {
+		    			ArrayList<new_user> listNews= ServiceMetier.getListNews();
+			    		request.getServletContext().setAttribute("listNews",listNews );
+			    		getServletContext().getRequestDispatcher("/AfficheNews.jsp").forward(request,  response);
+		    		}
+		   
+	    
+
+	    	}
+	    
+	    else
+	   	    if (page.equals("AjoutReaction")) {
+	   	    
+	   	    	String action=request.getParameter("action");
+		    	user=(user)session.getAttribute("user");
+	    		
+		    	    	
+		    	if (action.equals("Valider")) {
+		    		reaction  reaction= new reaction();
+		    		user_reaction userReaction = new user_reaction();
+		    		userReaction.setUser(user);
+		    		userReaction.setNews(ServiceMetier.getNewsByUrl(request.getParameter("listUrl")).getNews());
+//		    		reaction.setUser(user);
+//		    		reaction.setNews(ServiceMetier.getNewsByUrl(request.getParameter("listUrl")));
+		    		if ( ((String) request.getParameter ("reaction")).equals("Jaime") ) 
+		    			reaction.setReaction(true);
+		    		else 
+		    			reaction.setReaction(false);
+		    		try {
+		    			userReaction.setReaction(reaction);
+						ServiceDAO.AddReaction(userReaction);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+		    		getServletContext().getRequestDispatcher("/AjoutReaction.jsp").forward(request,  response);
+		    	    	
+		    	}
+		    	else 
+		    		if (action.equals("Ajout news")) {
+		    			getServletContext().getRequestDispatcher("/AjoutNews.jsp").forward(request,  response);
+		    		}
+		    		if (action.equals("Affichage news")) {
+		    			ArrayList<new_user> listNews= ServiceMetier.getListNews();
+			    		request.getServletContext().setAttribute("listNews",listNews );
+			    		
+			    		getServletContext().getRequestDispatcher("/AfficheNews.jsp").forward(request,  response);
+		    		}
+		
+		    }
+	}
+
+}

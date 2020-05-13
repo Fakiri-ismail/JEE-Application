@@ -1,0 +1,15 @@
+package Metier;
+
+import java.util.ArrayList;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		ArrayList<user_reaction> listRection=ServiceMetier.getListReactions();
+		
+		System.out.println(listRection.get(0).getReaction().getReaction());
+
+	}
+
+}

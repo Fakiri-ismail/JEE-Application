@@ -1,0 +1,29 @@
+package Metier;
+
+public class new_user {
+
+	private user user;
+	private news news;
+	public user getUser() {
+		return user;
+	}
+	public void setUser(user user) {
+		this.user = user;
+	}
+	public news getNews() {
+		return news;
+	}
+	public void setNews(news news) {
+		this.news = news;
+	}
+	@Override
+	public String toString() {
+		return "new_user [user=" + user + ", news=" + news + "]";
+	}
+	public  int getNombreJaime(){
+		return ServiceMetier.getNombreJaime(this);	
+	}
+	public  int getNombreJeDeteste(){
+		return ServiceMetier.getNombreJeDeteste(this);	
+	}
+}

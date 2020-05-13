@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"
+    import="java.util.*, Metier.*"
+    %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Table des reaction</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="afficheTableCss/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="afficheTableCss/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="afficheTableCss/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="afficheTableCss/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="afficheTableCss/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="afficheTableCss/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="afficheTableCss/css/util.css">
+	<link rel="stylesheet" type="text/css" href="afficheTableCss/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	<%  ArrayList<user_reaction> listReactions= ServiceMetier.getListReactions();%>
+	<% user user=(user) session.getAttribute("user"); %>
+ 
+	<div class="limiter">
+	  <div class="container-table100">
+		<div class="wrap-table100">
+			<div class="table">
+		
+				<div class="row header">
+				  <div class="cell"> Num </div>
+				  <div class="cell"> Titre </div>
+				  <div class="cell"> User </div>
+				  <div class="cell"> Reaction </div>
+				 </div>
+			
+			<%for (user_reaction react:listReactions) { %>	
+				<div class="row">
+				  <div class="cell"> <%=react.getReaction().getNum()%> </div>
+				  <div class="cell"> <%=react.getNews().getTitre() %>  </div>
+				  <div class="cell"> <%=react.getUser().getNomPrenom() %> </div>
+				  <div class="cell"> <% if (react.getReaction()) out.print("J'aime");
+		           						else out.print("je deteste");%>  	</div>
+				</div>
+			<% } %> 
+			</div>
+			
+			<div >
+				<BR><BR>
+				<a href="AjoutNews.jsp">Envoyer de nouveaux news... </a><BR><BR>
+				<a href="AjoutReaction.jsp">Envoyer de nouvelle reaction... </a><BR><BR>
+				<p align="right">
+				<b><%=user.getNomPrenom()%></b>
+	   			<a href="ServletService">  Se deconnecter ... </a>
+				</p>
+			 </div>
+			
+		</div>	
+	  </div>
+	</div>
+	<% session.setAttribute("page", "AffichageReaction");%>
+
+<!--===============================================================================================-->	
+	<script src="afficheTableCss/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="afficheTableCss/vendor/bootstrap/js/popper.js"></script>
+	<script src="afficheTableCss/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="afficheTableCss/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="afficheTableCss/js/main.js"></script>
+
+</body>
+</html>

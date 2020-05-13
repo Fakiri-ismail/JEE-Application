@@ -1,0 +1,96 @@
+package web;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+
+import dao.MaterielModel;
+import metier.Materiel;
+import metier.User;
+
+public class MaterielAction extends ActionSupport implements SessionAware {
+	
+	private static final long serialVersionUID = 1L;
+	
+	private String idMateriel;
+	private String genre;
+	private String reference;
+	private int quantite=0;
+	private boolean statut;
+	
+	private String emplacement;
+	private String description;
+	private Date dateMouvement;
+	
+	private static ArrayList<Materiel> materiels = new ArrayList<Materiel>();
+	
+	public String getIdMateriel() { return idMateriel; }
+	public void setIdMateriel(String idMateriel) { this.idMateriel = idMateriel; }
+
+	public String getGenre() { return genre; }
+	public void setGenre(String genre) { this.genre = genre; }
+
+	public String getReference() { return reference; }
+	public void setReference(String reference) { this.reference = reference; }
+
+	public int getQuantite() { return quantite; }
+	public void setQuantite(int quantite) { this.quantite = quantite; }
+
+	public boolean getStatut() { return statut; }
+	public void setStatut(boolean statut) { this.statut = statut; }
+	
+	public String getEmplacement() { return emplacement; }
+	public void setEmplacement(String emplacement) { this.emplacement = emplacement; }
+
+	public String getDescription() { return description; }
+	public void setDescription(String description) { this.description = description; }
+
+	public Date getDateMouvement() { return dateMouvement; }
+	public void setDateMouvement(Date dateMouvement) { this.dateMouvement = dateMouvement; }
+	
+	public static ArrayList<Materiel> getMateriels() { return materiels; }
+	public static void setMateriels(ArrayList<Materiel> materiels) { MaterielAction.materiels = materiels; }
+	
+	@Override
+	public void setSession(Map<String, Object> arg0) {// TODO Auto-generated method stub
+		}
+
+	//-----------------------Action methods-------------------------
+	public String AjoutMateriel() {
+		Map currentSession = ActionContext.getContext().getSession();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		if(idMateriel.equals("")||genre.equals("")||reference.equals("")) {
+			request.setAttribute("champv"," tout les chmaps doit être remplie");
+			return "input";
+		}
+		
+		if(quantite==0) {
+			request.setAttribute("q0","La quantité doit être different de 0");
+			return "input";
+		}
+		
+		User user = (User)currentSession.get("User");
+		Materiel mat = new Materiel();
+		
+		mat.setIdMateriel(idMateriel);
+		mat.setGenre(genre);
+		mat.setCreateur(user);
+		mat.setQuantite(quantite);
+		mat.setReference(reference);
+		mat.setStatut(statut);
+		
+		MaterielModel.AddMateriel(mat);
+		request.setAttribute("matadded","Opération terminée avec succès");
+		return "success";
+	}
+	
+}

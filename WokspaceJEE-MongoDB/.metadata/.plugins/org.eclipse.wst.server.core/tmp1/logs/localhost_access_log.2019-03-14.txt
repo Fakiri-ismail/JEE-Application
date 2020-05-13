@@ -1,0 +1,13 @@
+127.0.0.1 - - [14/Mar/2019:10:56:40 +0000] "GET / HTTP/1.1" 404 996
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:56:44 +0000] "GET /TD2-Disc-Prof/ HTTP/1.1" 200 657
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:56:49 +0000] "GET /TD2-Disc-Prof/inscription.jsp HTTP/1.1" 200 978
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:56:56 +0000] "POST /TD2-Disc-Prof/Operation HTTP/1.1" 200 657
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:57:03 +0000] "POST /TD2-Disc-Prof/Operation HTTP/1.1" 200 1138
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:57:07 +0000] "POST /TD2-Disc-Prof/Operation HTTP/1.1" 200 1138
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:57:10 +0000] "POST /TD2-Disc-Prof/Operation HTTP/1.1" 200 1138
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:57:16 +0000] "POST /TD2-Disc-Prof/Operation HTTP/1.1" 200 1138
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:57:18 +0000] "POST /TD2-Disc-Prof/Operation HTTP/1.1" 200 775
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:57:18 +0000] "GET /TD2-Disc-Prof/Style.css HTTP/1.1" 200 376
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:57:18 +0000] "GET /TD2-Disc-Prof/sky.jpg HTTP/1.1" 404 1021
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:57:23 +0000] "GET /TD2-Disc-Prof/AjoutMessage.jsp HTTP/1.1" 200 1138
+0:0:0:0:0:0:0:1 - - [14/Mar/2019:10:57:25 +0000] "GET /TD2-Disc-Prof/Operation HTTP/1.1" 200 657

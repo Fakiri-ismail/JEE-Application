@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;Prjt-NewsHIBERNATE/WebContent/jsp/AfficheReactions.jsp&apos;" deleteContents="false" description="Delete resource &apos;Prjt-NewsHIBERNATE/WebContent/jsp/AfficheReactions.jsp&apos;" element1="/Prjt-NewsHIBERNATE/WebContent/jsp/AfficheReactions.jsp" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1557805842453"/>
+</session>

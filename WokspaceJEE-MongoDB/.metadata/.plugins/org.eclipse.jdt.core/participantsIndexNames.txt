@@ -1,0 +1,91 @@
+INDEX VERSION 1.131
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2611424927.index
+\Prj1\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\659658155.index
+\TD\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4147645895.index
+\TD2-Discution\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2558419754.index
+\TestNewsJDBC\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3075323975.index
+\TD4-NewsJDBC\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\893524324.index
+\TD2-Disc-Mehdi\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3157942916.index
+\Prj1\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1867251468.index
+\TD3-Carte\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3521309781.index
+\TD1\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2926312857.index
+\Test\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2611424927.index
+\Prj1\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3575630874.index
+\TD4-GestDvpSTRUTS-HBERNET\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\676283176.index
+\TP\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1632465006.index
+\TD2-Disc-Prof\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2558419754.index
+\TestNewsJDBC\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3575630874.index
+\TD4-GestDvpSTRUTS-HBERNET\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1872503572.index
+\TD4-GestDvpSTRUTS\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1459360778.index
+\TD4-GestDvpJDBC-STRUTS\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4252543491.index
+\Prjt-NewsSTR\src
+C:\Users\Utilisateur\Desktop\WokspaceJEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1235268984.index
+\Prjt-NewsMongoDB\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3786582463.index
+\TD4-News\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1466041863.index
+\Tp\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1943271361.index
+\Prjt-NewsHIBERNATE\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3521309781.index
+\TD1\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\707225218.index
+\Prjt-NewsJDBC\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1303367798.index
+\Leoni-Prjt\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\707225218.index
+\Prjt-NewsJDBC\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1303367798.index
+\Leoni-Prjt\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1714696553.index
+\Prjt-NewsSTRUTS\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1615231416.index
+\Prj1-Avancé\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2780835516.index
+\PrjtNewsJDBC\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2491313368.index
+\TD4-GestionDeveloppeurSTRUTS\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1943271361.index
+\Prjt-NewsHIBERNATE\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1632465006.index
+\TD2-Disc-Prof\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1459360778.index
+\TD4-GestDvpJDBC-STRUTS\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3157942916.index
+\Prj1\src
+C:\Users\Utilisateur\Desktop\WokspaceJEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\707225218.index
+\Prjt-NewsJDBC\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1714696553.index
+\Prjt-NewsSTRUTS\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1615231416.index
+\Prj1-Avancé\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1872503572.index
+\TD4-GestDvpSTRUTS\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2186907409.index
+\TD3-Carte\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\893524324.index
+\TD2-Disc-Mehdi\src
+G:\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1867251468.index
+\TD3-Carte\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1385762413.index
+\Tar\src
+C:\Users\Utilisateur\Desktop\CIISIBD\S6\1-JAVA\2-Learn JEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2111787468.index
+\TD2-Disc-Tariq\src

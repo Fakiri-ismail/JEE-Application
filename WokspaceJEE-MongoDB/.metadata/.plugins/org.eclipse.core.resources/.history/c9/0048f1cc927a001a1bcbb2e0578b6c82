@@ -1,0 +1,21 @@
+package Metier;
+
+import java.util.ArrayList;
+
+import Dao.ServiceDAO;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+//		ArrayList<user> listuser=ServiceDAO.getAllUser();
+//		System.out.println(listuser.size());
+		
+		for(user user:ServiceDAO.getAllUser()) {
+			System.out.println(user.getEmail());
+			System.out.println(user.getMotPasse());
+		}
+
+	}
+
+}
